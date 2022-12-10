@@ -3,7 +3,6 @@
 var generateBtn = document.querySelector("#generate");
 
 var upCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-console.log(upCase);//logs uppercase string
 
 var lowCase = "abcdefghijklmnopqrstuvwxyz";
 console.log(lowCase);//logs lowercase string
@@ -18,19 +17,50 @@ var generatePassword = function() {
 
   var pwordLength = window.prompt("Choose a password length between 8 and 128 characters:");
   
-  if (!pwordLength) {
+  if (!pwordLength) { //closes out function if user presses cancel
     return;
    } 
   
   var length1 = (pwordLength >= 8);
   var length2 = (pwordLength <= 128);
 
- if (length1 && length2) {
-  window.prompt(upCase);
- } else if (!length1 || !length2) {
+ if (length1 && length2) { //moves user forward if input is true
+  window.confirm("Thanks! Let's choose some more criteria.");
+ } else if (!length1 || !length2) { //if input is false (doesnt meet criteria) user starts over
   window.alert("Please try again");
  }
 
+ var uppercaseChar = window.confirm("Use UPPERCASE letters?");
+
+ if (uppercaseChar) {
+  window.alert("Thanks!");
+ } else if (!uppercaseChar) {
+    window.alert("Got it, no UPPERCASE letters.");
+    }
+  
+ var lowercaseChar = window.confirm("Use lowercase letters?");
+
+ if (lowercaseChar) {
+  window.alert("Thanks!");
+ } else if (!lowercaseChar) {
+  window.alert("Got it, no lowercase letters");
+ }
+
+ var includeNum = window.confirm("Include numbers?");
+
+ if (includeNum) {
+  window.alert("Thanks!");
+ } else if (!includeNum) {
+  window.alert("Got it, no numbers.");
+ }
+
+ var specChar = window.confirm("Include special characters?");
+
+ if (specChar) {
+  window.alert("Thanks!");
+ } else if (!specChar) {
+  window.alert("Got it, no special Characters");
+ }
  }
 
 // var lngth = [128];

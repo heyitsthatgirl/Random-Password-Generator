@@ -2,14 +2,11 @@
 
 var generateBtn = document.querySelector("#generate");
 
-var pwordLength = 8;
-console.log(pwordLength);//logs 8
-
 var upCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-console.log(upCase[4]);//logs a selection from upCase value
+console.log(upCase);//logs uppercase string
 
 var lowCase = "abcdefghijklmnopqrstuvwxyz";
-console.log(lowCase);//logs lowercase
+console.log(lowCase);//logs lowercase string
 
 var nums = "123456789";
 console.log(nums);//logs numbers
@@ -17,6 +14,24 @@ console.log(nums);//logs numbers
 var chars = "!#$%&'()*+,-./:;<=>?@[^_`{|}~";
 console.log(chars);//special characters
 
+var generatePassword = function() {
+
+  var pwordLength = window.prompt("Choose a password length between 8 and 128 characters:");
+  
+  if (!pwordLength) {
+    return;
+   } 
+  
+  var length1 = (pwordLength >= 8);
+  var length2 = (pwordLength <= 128);
+
+ if (length1 && length2) {
+  window.prompt(upCase);
+ } else if (!length1 || !length2) {
+  window.alert("Please try again");
+ }
+
+ }
 
 // var lngth = [128];
 // var index = Math.floor(Math.random() * lngth) +8 ; 

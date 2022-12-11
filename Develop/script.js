@@ -14,6 +14,7 @@ var chooseNums;
 var specChars = "!#$%&'()*+,-./:;<=>?@[^_`{|}~";
 var chooseChars;
 
+
 var generatePassword = function () {
 
   length = window.prompt("Please choose a password length between 8 and 128 characters:");
@@ -22,31 +23,43 @@ var generatePassword = function () {
     window.alert("Try again. Please enter a length between 8 and 128 characters.");
   }
 
-
-  chooseUp = window.confirm("Use uppercase?"); 
+    chooseUp = window.confirm("Use uppercase?"); 
   
-  chooseLow = window.confirm("Use lowercase?");
+    chooseLow = window.confirm("Use lowercase?");
+  
+    chooseNums = window.confirm("Use numbers?");
+  
+    chooseChars = window.confirm("Use special characters?");
 
-  chooseNums = window.confirm("Use numbers?");
-
-  chooseChars = window.confirm("Use special characters?");
+  var criteria= Array[""];
 
   if (chooseUp) {
-    + uppercase;
+    + (uppercase);
   }
   if (chooseLow) {
-    + lowercase;
+    + (lowercase);
   }
   if (chooseNums) {
-    + nums;
+    + (nums);
   }
   if (chooseChars) {
-    + specChars;
+    + (specChars);
   }
-  if (!chooseUp && !chooseLow && !chooseNums && !chooseChars) {
+ else if (!chooseUp && !chooseLow && !chooseNums && !chooseChars) {
     window.alert("Please choose at least one type of criteria.")
   }
+
+  var criteria = "";
+  var password = "";
+  
+  for (var i = 0; i < length; i++) {
+    password = criteria[Math.floor(Math.random() * criteria.length)];
+  }
+  
 }
+
+
+
 
 
 

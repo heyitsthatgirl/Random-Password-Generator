@@ -18,21 +18,31 @@ var generatePassword = function () {
 
   length = window.prompt("Please choose a password length between 8 and 128 characters:");
 
-  if (length >= 8 && length <= 128) {
-    return ("Input received");
-  }
-  else {
-    window.alert("Please enter a length between 8 and 128 characters");
+  if (length < 8 || length > 128) {
+    window.alert("Try again. Please enter a length between 8 and 128 characters.");
   }
 
-chooseUp = window.confirm("Use uppercase?"); 
+
+  chooseUp = window.confirm("Use uppercase?"); 
   
-chooseLow = window.confirm("Use lowercase?");
+  chooseLow = window.confirm("Use lowercase?");
 
-chooseNums = window.confirm("Use numbers?");
+  chooseNums = window.confirm("Use numbers?");
 
-chooseChars = window.confirm("Use special characters?");
+  chooseChars = window.confirm("Use special characters?");
 
+  if (chooseUp) {
+    + uppercase;
+  }
+  if (chooseLow) {
+    + lowercase;
+  }
+  if (chooseNums) {
+    + nums;
+  }
+  if (chooseChars) {
+    + specChars;
+  }
 }
 
 

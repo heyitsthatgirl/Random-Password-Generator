@@ -43,6 +43,9 @@ var generatePassword = function () {
   if (chooseChars) {
     + specChars;
   }
+  if (!chooseUp && !chooseLow && !chooseNums && !chooseChars) {
+    window.alert("Please choose at least one type of criteria.")
+  }
 }
 
 

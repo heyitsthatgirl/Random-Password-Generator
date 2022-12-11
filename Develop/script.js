@@ -2,66 +2,40 @@
 
 var generateBtn = document.querySelector("#generate");
 
-var upCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var chooseUp;
 
-var lowCase = "abcdefghijklmnopqrstuvwxyz";
-console.log(lowCase);//logs lowercase string
+var lowercase = "abcdefghijklmnopqrstuvwxyz";
+var chooseLow;
 
 var nums = "123456789";
-console.log(nums);//logs numbers
+var chooseNums;
 
-var chars = "!#$%&'()*+,-./:;<=>?@[^_`{|}~";
-console.log(chars);//special characters
+var specChars = "!#$%&'()*+,-./:;<=>?@[^_`{|}~";
+var chooseChars;
 
-var generatePassword = function() {
+var generatePassword = function () {
 
-  var pwordLength = window.prompt("Choose a password length between 8 and 128 characters:");
+  length = window.prompt("Please choose a password length between 8 and 128 characters:");
+
+  if (length >= 8 && length <= 128) {
+    return ("Input received");
+  }
+  else {
+    window.alert("Please enter a length between 8 and 128 characters");
+  }
+
+chooseUp = window.confirm("Use uppercase?"); 
   
-  if (!pwordLength) { //closes out function if user presses cancel
-    return;
-   } 
-  
-  var length1 = (pwordLength >= 8);
-  var length2 = (pwordLength <= 128);
+chooseLow = window.confirm("Use lowercase?");
 
- if (length1 && length2) { //moves user forward if input is true
-  window.confirm("Thanks! Let's choose some more criteria.");
- } else if (!length1 || !length2) { //if input is false (doesnt meet criteria) user starts over
-  window.alert("Please try again");
- }
+chooseNums = window.confirm("Use numbers?");
 
- var uppercaseChar = window.confirm("Use UPPERCASE letters?");
+chooseChars = window.confirm("Use special characters?");
 
- if (uppercaseChar) {
-  window.alert("Thanks!");
- } else if (!uppercaseChar) {
-    window.alert("Got it, no UPPERCASE letters.");
-    }
-  
- var lowercaseChar = window.confirm("Use lowercase letters?");
+}
 
- if (lowercaseChar) {
-  window.alert("Thanks!");
- } else if (!lowercaseChar) {
-  window.alert("Got it, no lowercase letters");
- }
 
- var includeNum = window.confirm("Include numbers?");
-
- if (includeNum) {
-  window.alert("Thanks!");
- } else if (!includeNum) {
-  window.alert("Got it, no numbers.");
- }
-
- var specChar = window.confirm("Include special characters?");
-
- if (specChar) {
-  window.alert("Thanks!");
- } else if (!specChar) {
-  window.alert("Got it, no special Characters");
- }
- }
 
 // var lngth = [128];
 // var index = Math.floor(Math.random() * lngth) +8 ; 
@@ -70,10 +44,9 @@ var generatePassword = function() {
 
 
 function writePassword() {
-  var password = generatePassword(); //local variable 
-  var passwordText = document.querySelector("#password"); //targets the element with an id of "password"-the text box in the middle
-
-  passwordText.value = password; //sets the value of text box to a randomly generated password
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+  passwordText.value = password;
 
 }
 

@@ -1,97 +1,104 @@
-// Assignment Code
-
+//Targets the generate password button for the event listener later
 var generateBtn = document.querySelector("#generate");
 
+//Defines the criteria variables as strings 
 var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lowercase = "abcdefghijklmnopqrstuvwxyz";
 var nums = "1234567890";
 var specChars = "!#$%&'()*+,-./:;<=>?@[^_`{|}~";
 
+//Establishes variables to be defined later in the function
 var chooseUp;
 var chooseLow;
 var chooseNums;
 var chooseChars;
 var criteria = "";
-var password = "";
 var chosen = "";
 var combo = "";
 var newPass = "";
 
 var generatePassword = function () {
 
+  //Takes user input for password length, turns it into an integer, and stores the data in the passLength variable to be used later
   var passLengthChoose = window.prompt("Please choose a password length between 8 and 128 characters:");
   var passLength = parseInt(passLengthChoose);
-  console.log(passLength);
+  console.log(passLength); //logs selected length in the console (debugging)
 
-  if (passLength >= 8 && length <= 128) {
+  //Makes sure the function only continues if the user chooser a number 8-128
+  if (passLength >= 8 && passLength <= 128) {
     window.alert("Great! Let's choose some more criteria.");
   }
+  else if (passLength < 8 || passLength > 128) {
+    window.alert("Please choose a number between 8 and 128.")
+   return ""; //exits function and makes sure no value is returned
+  }
   else {
-    return;
+    return "";
   }
   
+  //Prompts the user to choose what types of criteria they want to use for their password
   chooseUp = window.confirm("Use uppercase?"); 
-    
-  chooseLow = window.confirm("Use lowercase?");
-    
-  chooseNums = window.confirm("Use numbers?");              
-    
-  chooseChars = window.confirm("Use special characters?");
-
-  
+  //Combines the strings of criteria variables based on user input
   if (chooseUp) {
     criteria = criteria.concat(uppercase);
+    window.alert("Ok, we'll use some UPPERCASE letters.");
   }
+  else {
+    window.alert("Got it, no uppercase letters.");
+  }
+    
+  chooseLow = window.confirm("Use lowercase?");
   if (chooseLow) {
     criteria = criteria.concat(lowercase);
+    window.alert("Ok, we'll use some lowercase letters.");
   }
+  else {
+    window.alert("Got it, no lowercase letters.");
+  }
+    
+  chooseNums = window.confirm("Use numbers?");  
   if (chooseNums) {
     criteria = criteria.concat(nums);
-  }
-  if (chooseChars) {
-    criteria = criteria.concat(specChars);     
-  }
- else if (!chooseUp && !chooseLow && !chooseNums && !chooseChars) {
-    window.alert("Please choose at least one type of criteria.");
-  }
-
-  console.log(criteria);
-
-  for (var i = 0; i < passLength; i++) {
-    chosen = Math.floor(Math.random() * criteria.length);
-    console.log(chosen);
-    combo = criteria[chosen];
-    console.log(combo);
-    newPass = newPass.concat(combo);
-    console.log(newPass);
-  }
-  return(newPass);
+    window.alert("Ok, we'll use some numbers.");
+  }       
+  else {
+    window.alert("Got it, no numbers.");
+  }     
     
+  chooseChars = window.confirm("Use special characters?");
+  if (chooseChars) {
+    criteria = criteria.concat(specChars);  
+    window.alert("Ok, we'll use special characters.");   
+  }
+  else {
+    window.alert("Got it, no special characters.")
+  }
+  //Stops the function if user does not confirm any criteria types
+ if (!chooseUp && !chooseLow && !chooseNums && !chooseChars) {
+    window.alert("Try again: Please choose at least one type of criteria.");
+    return ""; 
+  }
+
+  console.log(criteria); //logs the new criteria string in the console (debugging)
+
+  //For loop combines the user selected criteria with the password length
+  for (var i = 0; i < passLength; i++) { //sets the character limit to the number user chose
+    chosen = Math.floor(Math.random() * criteria.length); //selects a random item from the criteria string but returns it as the index number, not the character
+    console.log(chosen); //logs the randomly selected items in the console (debugging)
+    combo = criteria[chosen]; //matches the index numbers of the chosen selections with their characters in the criteria string
+    console.log(combo); //logs the characters in the console (debugging)
+    newPass = newPass.concat(combo); //adds the randomly selected items to a new string one by one until character limit has been reached and loop ends
+    console.log(newPass);//logs the new string of selected items in the console (debugging)
+  }
+  return(newPass); //displays selected criteria in the text box
   }
   
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
-//GIVEN I need a new, secure password
-//WHEN I click the button to generate a password
-//THEN I am presented with a series of prompts for password criteria
-//WHEN prompted for password criteria
-//THEN I select which criteria to include in the password
-//WHEN prompted for the length of the password
-//THEN I choose a length of at least 8 characters and no more than 128 characters
-//WHEN asked for character types to include in the password
-//THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-//WHEN I answer each prompt
-//THEN my input should be validated and at least one character type should be selected
-//WHEN all prompts are answered
-//THEN a password is generated that matches the selected criteria
-//WHEN the password is generated
-//THEN the password is either displayed in an alert or written to the page

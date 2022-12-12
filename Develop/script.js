@@ -3,72 +3,72 @@
 var generateBtn = document.querySelector("#generate");
 
 var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var chooseUp;
-
 var lowercase = "abcdefghijklmnopqrstuvwxyz";
-var chooseLow;
-
-var nums = "123456789";
-var chooseNums;
-
+var nums = "1234567890";
 var specChars = "!#$%&'()*+,-./:;<=>?@[^_`{|}~";
-var chooseChars;
 
+var chooseUp;
+var chooseLow;
+var chooseNums;
+var chooseChars;
+var criteria = "";
+var password = "";
+var chosen = "";
+var combo = "";
+var newPass = "";
 
 var generatePassword = function () {
 
-  length = window.prompt("Please choose a password length between 8 and 128 characters:");
+  var passLengthChoose = window.prompt("Please choose a password length between 8 and 128 characters:");
+  var passLength = parseInt(passLengthChoose);
+  console.log(passLength);
 
-  if (length < 8 || length > 128) {
-    window.alert("Try again. Please enter a length between 8 and 128 characters.");
+  if (passLength >= 8 && length <= 128) {
+    window.alert("Great! Let's choose some more criteria.");
   }
-
-    chooseUp = window.confirm("Use uppercase?"); 
+  else {
+    return;
+  }
   
-    chooseLow = window.confirm("Use lowercase?");
-  
-    chooseNums = window.confirm("Use numbers?");
-  
-    chooseChars = window.confirm("Use special characters?");
+  chooseUp = window.confirm("Use uppercase?"); 
+    
+  chooseLow = window.confirm("Use lowercase?");
+    
+  chooseNums = window.confirm("Use numbers?");              
+    
+  chooseChars = window.confirm("Use special characters?");
 
-  var criteria= Array[""];
-
+  
   if (chooseUp) {
-    + (uppercase);
+    criteria = criteria.concat(uppercase);
   }
   if (chooseLow) {
-    + (lowercase);
+    criteria = criteria.concat(lowercase);
   }
   if (chooseNums) {
-    + (nums);
+    criteria = criteria.concat(nums);
   }
   if (chooseChars) {
-    + (specChars);
+    criteria = criteria.concat(specChars);     
   }
  else if (!chooseUp && !chooseLow && !chooseNums && !chooseChars) {
-    window.alert("Please choose at least one type of criteria.")
+    window.alert("Please choose at least one type of criteria.");
   }
 
-  var criteria = "";
-  var password = "";
-  
-  for (var i = 0; i < length; i++) {
-    password = criteria[Math.floor(Math.random() * criteria.length)];
+  console.log(criteria);
+
+  for (var i = 0; i < passLength; i++) {
+    chosen = Math.floor(Math.random() * criteria.length);
+    console.log(chosen);
+    combo = criteria[chosen];
+    console.log(combo);
+    newPass = newPass.concat(combo);
+    console.log(newPass);
+  }
+  return(newPass);
+    
   }
   
-}
-
-
-
-
-
-
-// var lngth = [128];
-// var index = Math.floor(Math.random() * lngth) +8 ; 
-// console.log(index);//randomly selects a number between 8 and 128
-
-
-
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");

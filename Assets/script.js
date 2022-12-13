@@ -15,7 +15,7 @@ var chooseChars;
 var criteria = "";
 var chosen = "";
 var combo = "";
-var newPass = "";
+
 
 var generatePassword = function () {
 
@@ -80,6 +80,8 @@ var generatePassword = function () {
   }
 
   console.log(criteria); //logs the new criteria string in the console (debugging)
+
+  var newPass = "";
 
   //For loop combines the user selected criteria with the password length
   for (var i = 0; i < passLength; i++) { //sets the character limit to the number user chose
